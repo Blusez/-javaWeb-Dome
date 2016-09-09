@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	定义构成复合视图的所有页面构件的描述
+	(主要结构页面，header,footer...)，如下例：
+-->
+<decorators defaultdir="/decorators">
+	<!-- 在excludes元素下指定的页面将不会由SiteMesh来装饰 -->
+	<excludes>
+	    <!--  
+		<pattern>/WEB-INF/manage/*.*</pattern>
+		<pattern>/WEB-INF/manage/common/*.*</pattern>
+		<pattern>/WEB-INF/manage/basedata/*.*</pattern>
+		<pattern>/WEB-INF/manage/error/*.*</pattern>
+		<pattern>/WEB-INF/manage/frame/*.*</pattern>
+		
+		
+		<pattern>/sys/js/*.*</pattern>
+		<pattern>/sys/js/*.*</pattern>
+		<pattern>/sys/resource/*.*</pattern>
+		<pattern>/sys/*.*</pattern>
+		<pattern>/web/images/*.*</pattern>
+		<pattern>/web/js/*.*</pattern>
+		-->
+		<pattern>/decorators/*</pattern>
+		<pattern>/manage*.jsp</pattern>
+		<pattern>/web/getTopic.do*</pattern>
+		<pattern>/web/queryTopic.do*</pattern>
+		<pattern>/WEB-INF/template/web/topic.ftl</pattern>
+		<pattern>/web/kindeditor/file_manager_json.jsp*</pattern>
+		<pattern>/web/kindeditor/upload_json.jsp*</pattern>
+	</excludes>
+	<!--  
+	<decorator name="none">  
+	    <pattern>/WEB-INF/manage/frame/menu.jsp</pattern>  
+	</decorator>  
+	-->
+     <decorator name="index" page="indexDec.ftl">
+           <pattern>/web/*</pattern>
+           <pattern>/index*.*</pattern>
+     </decorator>
+
+</decorators> 

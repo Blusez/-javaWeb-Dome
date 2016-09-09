@@ -1,0 +1,19 @@
+.list-table {
+	font-size: 13px;
+	background: #D1D6F3;
+	width: 100%;
+}
+
+.list-table TH {
+	height: 30px;
+	font-weight: bold; 
+	background: url(../pic/list_table_head.gif);
+	color: #000; 
+	text-align: center;
+}
+
+.list-table TD {
+	height: 25px;
+	font-weight: normal;
+	color: #000;
+}

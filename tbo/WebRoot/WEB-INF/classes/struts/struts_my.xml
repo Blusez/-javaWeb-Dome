@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+ <struts>
+     <package name="jsonher" namespace="/json" extends="json-default">
+       <action name="delete" method="delete" class="com.sosee.myapp.action.CompanyInfoAction">
+          <result type="json" name="ajaxSuccess">
+             <param name="ignoreHierarchy">false</param><!-- 这个属性表示是否忽略等级，也就是继承关系,设置为 false 后会将父类和子类的属性一起返回 -->
+		     <param name="excludeNullProperties">true</param><!-- 这个属性表示去除空数据 -->
+          </result>
+       </action>
+       <action name="login" method="login" class="com.sosee.myapp.action.LoginAction">
+          <result type="json" name="loginSuccess">
+             <param name="ignoreHierarchy">false</param><!-- 这个属性表示是否忽略等级，也就是继承关系,设置为 false 后会将父类和子类的属性一起返回 -->
+		     <param name="excludeNullProperties">true</param><!-- 这个属性表示去除空数据 -->
+          </result>
+       </action>
+       <!-- 厂家信息增加 -->
+       <action name="add" method="addComp" class="com.sosee.myapp.action.AddCompanInfoAction">
+             <result type="json" name="addsuccess">
+               <param name="ignoreHierarchy">false</param><!-- 这个属性表示是否忽略等级，也就是继承关系,设置为 false 后会将父类和子类的属性一起返回 -->
+		        <param name="excludeNullProperties">true</param><!-- 这个属性表示去除空数据 -->
+             </result>
+       </action>
+       
+       <!-- 注册信息 -->
+       <action name="register" method="register" class="com.sosee.myapp.action.Zsosee.myappceAction">
+          <result type="json" name="registerSuccess">
+               <param name="ignoreHierarchy">false</param><!-- 这个属性表示是否忽略等级，也就是继承关系,设置为 false 后会将父类和子类的属性一起返回 -->
+		       <param name="excludeNullProperties">true</param><!-- 这个属性表示去除空数据 -->
+          </result>
+       </action>
+       
+       <!-- 产品信息增加 -->
+       <action name="addproduct" method="addproduct" class="com.sosee.myapp.action.AddProductAction">
+           <result type="json" name="addproductSuccess">
+              <param name="ignoreHierarchy">false</param><!-- 这个属性表示是否忽略等级，也就是继承关系,设置为 false 后会将父类和子类的属性一起返回 -->
+		       <param name="excludeNullProperties">true</param><!-- 这个属性表示去除空数据 -->
+           </result>
+       </action>
+       
+     </package>
+     
+     <package name="myher"  namespace="myher" extends="struts-default">
+        <interceptors>
+           <interceptor name="logininter" class="com.sosee.myapp.intercepter.LoginInterceptor"></interceptor>
+           <interceptor-stack name="loginStack">
+              <interceptor-ref name="logininter"></interceptor-ref>
+              <interceptor-ref name="defaultStack"></interceptor-ref>
+           </interceptor-stack>
+        </interceptors>
+        
+        <global-results>
+            
+              <result>/login.jsp</result>
+              <result type="redirect" name="loginin">/login</result>
+        
+        </global-results>
+         <!-- 厂家信息查询 -->
+         <action name="findcom" method="findcom" class="com.sosee.myapp.action.CompanyInfoAction">
+              <result>/web/factoryInfo.jsp</result>
+              <interceptor-ref name="loginStack"></interceptor-ref>
+         </action>
+         <!-- 厂家信息查询按厂家名字查询 -->
+         <action name="findcombyname" method="findcomByName" class="com.sosee.myapp.action.CompanyInfoAction">
+              <result>/web/factoryInfo.jsp</result>
+              <interceptor-ref name="loginStack"></interceptor-ref>
+         </action>
+         <action name="loginsuccess" method="loginSuccess" class="com.sosee.myapp.action.LoginAction">
+              <result>/web/main.jsp</result>
+              <interceptor-ref name="loginStack"></interceptor-ref>
+         </action>
+         <!-- 登录拦截 -->
+      <!--    <action name="login" method="log" class="com.sosee.myapp.action.LoginAction">
+              
+         </action> -->
+         <!-- 跳转到厂家信息增加页面-->
+         <action name="addcom" method="addye" class="com.sosee.myapp.action.AddCompanInfoAction">
+            <result>/web/factory.jsp</result>
+            <interceptor-ref name="loginStack"></interceptor-ref>
+         </action>
+         <!-- 跳转到注册页面 -->
+         <action name="zsosee.myappce" method="zsosee.myappce" class="com.sosee.myapp.action.Zsosee.myappceAction">
+            <result>/web/register.jsp</result>
+            <interceptor-ref name="loginStack"></interceptor-ref>
+         </action>
+         
+         <!-- 跳转到产品添加页面 -->
+         <action name="addpro" method="productye" class="com.sosee.myapp.action.AddProductAction">
+            <result>/web/product.jsp</result>
+            <interceptor-ref name="loginStack"></interceptor-ref>
+         </action>
+         
+         <!-- 查看产品信息 -->
+         <action name="findproduct" method="findproduct" class="com.sosee.myapp.action.SearchProductAction">
+            <result name="findSuccess">/web/productInfo.jsp</result>
+         </action>
+         
+         <action name="findbyname" method="findproductByName"  class="com.sosee.myapp.action.SearchProductAction">
+             <result name="findbynameSuccess">/web/productInfo.jsp</result>
+         </action>
+         
+         <action name="fenyecomp" method="factfenye" class="com.sosee.myapp.action.CompanyInfoAction">
+            <result name="fenyeSuccess">/web/factoryInfo.jsp</result>
+         </action>
+         
+     </package>
+       
+ </struts>

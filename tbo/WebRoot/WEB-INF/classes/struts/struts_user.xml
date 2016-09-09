@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!--系统登录  -->
+	<package name="com.sosee.sys.user.login" extends="struts-default" namespace="/login">
+		<action name="*Action" class="com.sosee.sys.user.action.LoginAction" method="{1}">
+			<result name="login">/WEB-INF/manage/login.jsp</result>
+			<result name="success">/WEB-INF/manage/index.jsp</result>
+			<result name="reg">/WEB-INF/manage/custom/untitled.html</result>
+			<result name="regc">/WEB-INF/manage/login.jsp</result>
+		</action>
+  	</package>
+  	<!-- 系统登录成功 -->
+	<package name="com.sosee.sys.user.main" extends="default" namespace="/main">
+		<action name="*Action" class="com.sosee.sys.user.action.LoginAction" method="{1}">
+			<result name="top">/WEB-INF/manage/frame/top.jsp</result>
+			<result name="control">/WEB-INF/manage/frame/control.jsp</result>
+			<result name="mainPanel">/WEB-INF/manage/frame/main.jsp</result>
+			<result name="leftPanel">/WEB-INF/manage/frame/left.jsp</result>
+			<result name="sideControl">/WEB-INF/manage/frame/side.jsp</result>
+			<result name="menu">/WEB-INF/manage/frame/menu.jsp</result>
+			<result name="first">/WEB-INF/manage/index.jsp</result>
+			<result name="modifyPsd">/WEB-INF/manage/sys/user/modifypsd.jsp</result>
+			<result name="savePsd" type="redirect">/login/reloginAction.do</result>
+		</action>	
+	</package>
+	<!-- 用户管理 -->	
+	<package name="com.sosee.sys.user.user" extends="default" namespace="/user">
+		<action name="*Action" class="com.sosee.sys.user.action.UserAction" method="{1}">
+			<result name="query">/WEB-INF/manage/sys/user/userList.jsp</result>
+			<result name="add">/WEB-INF/manage/sys/user/userEdit.jsp</result>
+			<result name="edit">/WEB-INF/manage/sys/user/userEdit.jsp</result>
+			<result name="check">/WEB-INF/manage/sys/user/userEdit.jsp</result>
+			<result name="getCity">/WEB-INF/manage/common/switchData.jsp</result>
+		</action>	
+	</package>
+	<!-- 模块管理 -->	
+	<package name="com.sosee.sys.user.model" extends="default" namespace="/model">
+		<action name="*Action" class="com.sosee.sys.user.action.ModelAction" method="{1}">
+			<result name="query">/WEB-INF/manage/sys/user/modelList.jsp</result>
+			<result name="add">/WEB-INF/manage/sys/user/modelEdit.jsp</result>
+			<result name="edit">/WEB-INF/manage/sys/user/modelEdit.jsp</result>
+		</action>	
+	</package>
+	<!-- 角色管理 -->	
+	<package name="com.sosee.sys.user.role" extends="default" namespace="/role">
+		<action name="*Action" class="com.sosee.sys.user.action.RoleAction" method="{1}">
+			<result name="frame">/WEB-INF/manage/sys/user/roleListFrame.jsp</result>
+			<result name="query">/WEB-INF/manage/sys/user/roleList.jsp</result>
+			<result name="queryModel">/WEB-INF/manage/sys/user/roleModelList.jsp</result>
+			<result name="queryUser">/WEB-INF/manage/sys/user/roleUserList.jsp</result>
+			<result name="tree">/WEB-INF/manage/sys/user/roleTree.jsp</result>
+			<result name="add">/WEB-INF/manage/sys/user/roleEdit.jsp</result>
+			<result name="edit">/WEB-INF/manage/sys/user/roleEdit.jsp</result>
+		</action>	
+	</package>
+	<!-- 日志管理 -->	
+	<package name="com.sosee.sys.user.log" extends="default" namespace="/log">
+		<action name="*Action" class="com.sosee.sys.user.action.LogAction" method="{1}">
+			<result name="queryLoginLog">/WEB-INF/manage/sys/user/loginLogList.jsp</result>
+			<result name="queryOperateLog">/WEB-INF/manage/sys/user/operateLogList.jsp</result>
+		</action>
+	</package>
+</struts>

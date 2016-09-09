@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+             default-autowire="byName">
+	
+	<!--基础字典  -->
+	<bean id="baseCodeDao" class="com.sosee.sys.base.dao.BaseCodeDaoImpl" scope="prototype"/>
+	<bean id="baseCodeService" class="com.sosee.sys.base.service.BaseCodeServiceImpl" scope="prototype" />
+	<bean id="baseDictDao" class="com.sosee.sys.base.dao.BaseDictDaoImpl" scope="prototype"/>
+	<bean id="baseDictService" class="com.sosee.sys.base.service.BaseDictServiceImpl" scope="prototype" />
+
+    <!--行政区管理  -->
+	<!--<bean id="regionDao" class="com.sosee.sys.base.dao.RegionDaoImpl" scope="prototype"/>
+	<bean id="regionsService" class="com.sosee.sys.base.service.RegionServiceImpl" scope="prototype" />-->
+	<bean id="cityRegionDao" class="com.sosee.sys.base.dao.CityRegionDaoImpl" scope="prototype"/>
+	<bean id="cityRegionService" class="com.sosee.sys.base.service.CityRegionServiceImpl" scope="prototype" />
+	
+</beans>

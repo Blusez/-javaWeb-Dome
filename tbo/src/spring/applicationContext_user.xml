@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+             default-autowire="byName">
+	<!-- 用户 -->
+	<bean id="userDao" class="com.sosee.sys.user.dao.UserDaoImpl"
+		scope="prototype" />
+	<bean id="userService" class="com.sosee.sys.user.service.UserServiceImpl"
+		scope="prototype" />	
+	<!-- 用户角色关系 -->
+	<bean id="userRoleDao" class="com.sosee.sys.user.dao.UserRoleDaoImpl"
+		scope="prototype" />
+	<bean id="userRoleService" class="com.sosee.sys.user.service.UserRoleServiceImpl"
+		scope="prototype" />
+	<!-- 角色 -->	
+	<bean id="roleDao" class="com.sosee.sys.user.dao.RoleDaoImpl"
+		scope="prototype" />
+	<bean id="roleService" class="com.sosee.sys.user.service.RoleServiceImpl"
+		scope="prototype" />
+	<!-- 角色模块关系 -->
+	<bean id="roleModelDao" class="com.sosee.sys.user.dao.RoleModelDaoImpl"
+		scope="prototype" />
+	<bean id="roleModelService" class="com.sosee.sys.user.service.RoleModelServiceImpl"
+		scope="prototype" />
+	<!-- 模块关系 -->	
+	<bean id="modelDao" class="com.sosee.sys.user.dao.ModelDaoImpl"
+		scope="prototype" />
+	<bean id="modelService" class="com.sosee.sys.user.service.ModelServiceImpl"
+		scope="prototype" />
+	<!-- 登录日志 -->	
+	<bean id="loginLogDao" class="com.sosee.sys.user.dao.LoginLogDaoImpl"
+		scope="prototype" />
+	<bean id="loginLogService" class="com.sosee.sys.user.service.LoginLogServiceImpl"
+		scope="prototype" />
+	<!-- 操作日志 -->	
+	<bean id="operateLogDao" class="com.sosee.sys.user.dao.OperateLogDaoImpl"
+		scope="prototype" />
+	<bean id="operateLogService" class="com.sosee.sys.user.service.OperateLogServiceImpl"
+		scope="prototype" />
+</beans>

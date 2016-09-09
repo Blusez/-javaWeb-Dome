@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="default" extends="struts-default">
+		<global-results>
+			<result name="error" type="freemarker">/common/action_error.ftl</result>
+		</global-results>
+		
+		<action name="login" class="com.iemis.base.action.LoginAction">
+			<result name="input" type="freemarker">/common/login.ftl</result>
+			<result name="success"  type="redirect">/index.jsp</result>
+		</action>
+	</package>
+	
+	<!-- browser -->
+	<package name="browser" extends="struts-default" namespace="/browser">
+		<global-results>
+			<result name="error" type="freemarker">/common/action_error.ftl</result>
+			<result name="input" type="freemarker">/common/action_blank.ftl</result>
+			<result name="success" type="freemarker">/common/action_success.ftl</result>
+		</global-results>
+		
+		<action name="home" class="com.iemis.base.action.BaseAction" method="complete">
+			<result name="success" type="freemarker">home.ftl</result>
+		</action>
+	</package>
+	<package name="browser_home" extends="struts-default" namespace="/browser/home">
+		<global-results>
+			<result name="error" type="freemarker">/common/action_error.ftl</result>
+			<result name="input" type="freemarker">/common/action_blank.ftl</result>
+			<result name="success" type="freemarker">/common/action_success.ftl</result>
+		</global-results>
+		
+		<action name="show" class="com.iemis.base.action.BaseAction" method="show">
+			<result name="success" type="freemarker">show.ftl</result>
+		</action>
+	</package>
+</struts>

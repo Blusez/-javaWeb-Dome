@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" 
+    "http://getahead.org/dwr/dwr20.dtd">
+<dwr>
+  <init>
+      <converter id="testbean" class="uk.ltd.getahead.testdwr.TestBean2Converter"/>
+  </init>
+  <allow>
+  
+	  <!--dwr与Spring 结合的两种配制方法-->
+	<convert converter="bean" match="com.sosee.sys.base.pojo.Items" />
+	<convert converter="bean" match="com.sosee.sys.base.pojo.League" />
+	<convert converter="bean" match="com.sosee.sys.base.pojo.CityRegion" />
+	<convert converter="bean" match="com.sosee.sys.news.action.NewsAction" />
+ 
+  <create creator="spring" javascript="NewsAction">
+       <param name="beanName" value="newsAction"/>
+       <include method="deleteFile"/>
+       <include method="getSavePath"/>
+  </create>
+  </allow>
+</dwr>

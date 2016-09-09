@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="webs" extends="struts-default" namespace="/web">
+		<action name="getIndex" class="com.sosee.web.index.IndexAction" method="getIndex">
+			<result name="success" type="freemarker">/index.ftl</result>
+		</action>
+		<action name="*Trade" class="com.sosee.web.trade.action.TradeAction" method="{1}">
+			<result name="success" type="freemarker">/WEB-INF/template/web/list.ftl</result>
+			<result name="search" type="freemarker">/WEB-INF/template/web/search.ftl</result>
+			<result name="topics" type="freemarker">/WEB-INF/template/web/topics.ftl</result>
+			<result name="error" type="freemarker">/WEB-INF/template/web/errorPage.ftl</result> 
+			<result name="queryxz" type="freemarker">/WEB-INF/template/web/xzfwy.ftl</result>
+			<result name="queryxzindex" type="freemarker">/WEB-INF/template/web/xzindex.ftl</result>			
+		</action>
+	</package>
+	
+	<!-- <package name="unionweb" extends="struts-default" namespace="/web">		
+		<action name="*Union" class="com.sosee.web.union.action.UnionAction" method="getUnion">
+			<result name="success" type="freemarker">/WEB-INF/template/web/union.ftl</result>
+		</action>
+		<action name="*Sub" class="com.sosee.web.union.action.SubAction" method="{1}">
+			<result name="success" type="freemarker">/WEB-INF/template/web/subUnionlist.ftl</result>
+			<result name="unionOrg" type="freemarker">/WEB-INF/template/web/unionOrg.ftl</result>
+			<result name="topics" type="freemarker">/WEB-INF/template/web/topics.ftl</result>
+			<result name="leader1" type="freemarker">/WEB-INF/template/web/unionLeader.ftl</result>
+		</action>
+	</package> -->
+</struts>

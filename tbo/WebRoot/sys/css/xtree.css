@@ -1,0 +1,101 @@
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color:#EFF2F7;
+    SCROLLBAR-FACE-COLOR: #B1B8D3;
+    SCROLLBAR-HIGHLIGHT-COLOR: #CBD0E3;
+    SCROLLBAR-SHADOW-COLOR: #CBD0E3;
+    SCROLLBAR-ARROW-COLOR: #5B6992;
+    SCROLLBAR-TRACK-COLOR: #E1E6F5;
+    SCROLLBAR-DARKSHADOW-COLOR: #BABECB;
+
+}
+.webfx-tree-container {
+	margin: 0px;
+	padding: 0px;
+   	font-family: "宋体";
+	font-size: 12px;
+    white-space: nowrap;
+}
+
+.webfx-tree-item {
+	padding: 0px;
+	margin: 0px;
+	font-family: "宋体";
+	font-size: 12px;
+	color: #000000;
+	white-space: nowrap;
+	height: ;
+}
+
+.webfx-tree-item input{
+    font-family: "宋体";
+	font-size: 12px;
+    height:13px;
+	margin-top:0px;
+	margin-bottom:0px;
+}
+
+.webfx-tree-item a, .webfx-tree-item a:active, .webfx-tree-item a:hover {
+	margin-left: 3px;
+	padding: 0px 2px 1px 2px;
+	border: 0px;
+}
+
+.webfx-tree-item a {
+    font-family: "宋体";
+	font-size: 12px;
+    color: #000000;
+	text-decoration: none;
+	line-height:17px;
+	height:2px;
+	border: 0px;
+}
+
+
+
+.webfx-tree-item a:hover {
+    font-family: "宋体";
+	font-size: 12px;
+    color: #000000;
+	text-decoration: none;
+	background:url('/extcomponent/ui/skin/bizfocus/images/xtree/treebg03.gif') top repeat-x;
+	line-height:17px;
+	height:2px;
+	border: 0px;
+}
+
+
+
+.webfx-tree-item a:active {
+	background:url('/extcomponent/ui/skin/bizfocus/images/xtree/treebg02.gif') top repeat-x;
+    font-family: "宋体";
+	font-size: 12px;
+    color: #000000;
+	text-decoration: none;
+	line-height:17px;
+	height:2px;
+	border: 0px;
+}
+
+.webfx-tree-item img {
+	vertical-align: top;
+	border: 0px;
+}
+
+.webfx-tree-icon {
+	width: 16px;
+	height: 16px;
+	border: 0px;
+}
+
+.selected-inactive{
+	color:#000000;
+	background:url('/extcomponent/ui/skin/bizfocus/images/xtree/treebg02.gif') top repeat-x;
+	text-decoration: none;
+	line-height:17px;
+	height:2px;
+	border: 0px;
+}

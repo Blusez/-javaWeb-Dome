@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<bean type="org.apache.struts2.dispatcher.multipart.MultiPartRequest" name="requestParser"
+    class="com.sosee.sys.interceptor.ResourceMultiPartRequest" scope="default" optional="true" />
+	<constant name="struts.multipart.handler" value="requestParser" />
+	<constant name="struts.multipart.maxSize" value="10701096"/>  
+	<package name="news" extends="default" namespace="/news">
+		<action name="*Action" class="com.sosee.sys.news.action.NewsAction" method="{1}">
+			<interceptor-ref name="fileUpload">
+					<param name="maximumSize">10701096</param>
+					<!-- 
+					<param name="allowedTypes">image/png,image/gif,image/jpeg,application/x-shockwave-flash</param>
+					 -->
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<param name="savePath">/upload/news</param>
+			<param name="inputPath">/upload/news</param>
+			<result name="success" type="stream">
+				<param name="contentType">application/msword</param>
+				<param name="inputName">targetFile</param>
+				<param name="contentDisposition">filename="struts.gif"</param>
+				<param name="bufferSize">409600</param>
+			</result>
+			<result name="list">/WEB-INF/manage/sys/new/newsList.jsp</result>
+			<result name="edit">/WEB-INF/manage/sys/new/newsEdit.jsp</result>
+			<result name="refresh" type="redirect">/news/getNewsItemsListAction.do?id=${news.itemsId.id}&amp;news.itemsId.id=${news.itemsId.id}</result>
+			<result name="add">/WEB-INF/manage/sys/new/newsAdd.jsp</result>
+			<result name="itemtree">/WEB-INF/manage/sys/new/newsitemsTree.jsp</result>
+			<result name="switch">/WEB-INF/manage/sys/new/newsitemsListFrame.jsp</result>
+			<result name="input">/WEB-INF/manage/common/uploaderror.jsp</result> 
+			<result name="shenhe">/WEB-INF/manage/sys/new/shenhenews.jsp</result>
+			<result name="login">/WEB-INF/manage/login.jsp</result>
+			<result name="membernews">/WEB-INF/manage/sys/meme/memberNewsList.jsp</result>
+			<result name="shenhemembernews">/WEB-INF/manage/sys/meme/shenheNews.jsp</result>
+			<result name="refreshMembernews" type="redirect">/news/queryMemberNewsListAction.do</result>
+		</action>
+	</package>
+	<package name="othernews" extends="default" namespace="/othernews">
+		<action name="*Action" class="com.sosee.sys.news.action.OtherNewsAction" method="{1}">
+			<interceptor-ref name="fileUpload">
+					<param name="maximumSize">20971520</param>
+					<!-- 
+					<param name="allowedTypes">image/png,image/gif,image/jpeg,application/x-shockwave-flash</param>
+					 -->
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<param name="savePath">/upload</param>
+			<result name="list">/WEB-INF/manage/sys/new/otherNewsList.jsp</result>
+			<result name="edit">/WEB-INF/manage/sys/new/otherNewsEdit.jsp</result>
+			<result name="refresh" type="redirect">/othernews/getOtherNewsItemsListAction.do?otherNews.itemsId.id=${otherNews.itemsId.id}</result>
+			<result name="add">/WEB-INF/manage/sys/new/otherNewsAdd.jsp</result>
+			<result name="input">/WEB-INF/manage/common/uploaderror.jsp</result> 
+			<result name="itemtree">/WEB-INF/manage/sys/new/othernewsitemsTree.jsp</result>
+			<result name="switch">/WEB-INF/manage/sys/new/othernewsitemsListFrame.jsp</result>
+		</action>
+	</package>
+	
+	<package name="newstype" extends="default" namespace="/newstype">
+		<action name="*Action" class="com.sosee.sys.news.action.NewsTypeAction" method="{1}">
+			<result name="list">/WEB-INF/manage/sys/new/newsTypeList.jsp</result>
+			<result name="refresh" type="redirect">/newstype/transferToNewsTypeListAction.do</result>
+		</action>
+	</package>
+</struts>

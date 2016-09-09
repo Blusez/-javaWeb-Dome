@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- <package name="default" extends="struts-default">
+		<interceptors>
+			<interceptor name="authority"
+				class="com.sosee.sys.interceptor.AuthorityInterceptor" />
+			<interceptor-stack name="userDefaultStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="authority"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="userDefaultStack" />
+		<global-results>
+			<result name="login" type="redirect">/login/reloginAction.do</result>
+			<result name="message">/common/messageView.jsp</result>
+		</global-results>
+	</package> -->
+	
+	<!-- 基础数据管理的配置文件  -->
+	<include file="/struts/struts_basedata.xml" />
+	<!-- 用户管理的配置文件  -->
+	<include file="/struts/struts_user.xml" />
+	<!-- 新闻管理的配置文件  -->
+	<include file="/struts/struts_news.xml" />
+	<!-- 前台页面的配置文件 --> 
+	<include file="/struts/struts_web.xml" />
+	
+	<include file="/struts/struts_app.xml" />
+	<!-- 公司管理配置文件 -->
+	<include file="/struts/struts_company.xml"/>
+	<!-- 产品管理配置文件 -->
+	<include file="/struts/struts_product.xml"/>
+	<!-- 订单管理配置文件 -->
+	<include file="/struts/struts_order.xml"></include>
+	<!-- 订单明细配置文件 -->
+	<include file="/struts/struts_opdetail.xml"></include>
+	
+	
+	<include file="/struts/struts_test.xml"></include>
+</struts>

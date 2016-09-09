@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="default" namespace="/blo" extends="struts-default">
+		 <action name="zhuceAction"  class="com.sosee.myapp.action.ZhuceAction">
+            <result>/web/register.jsp</result>           
+         </action>
+         <!-- 厂家信息查询 -->
+         <action name="findcom" method="findcom" class="com.sosee.myapp.action.CompanyInfoAction">
+              <result>/web/factoryInfo.jsp</result>
+              
+         </action>
+         
+         <!-- 厂家信息查询按厂家名字查询 -->
+         <action name="findcombyname" method="findcombyname" class="com.sosee.myapp.action.CompanyInfoAction">
+              <result>/web/factoryInfo.jsp</result>
+         </action>
+         <action name="login"  class="com.sosee.myapp.action.LoginAction">
+              <result>/web/main.jsp</result>
+              <result name="fail">login.jsp</result>
+         </action>
+         <!-- 登录拦截 -->
+      <!--    <action name="login" method="log" class="com.sosee.myapp.action.LoginAction">
+              
+         </action> -->
+         <!-- 跳转到厂家信息增加页面-->
+         <action name="addcom"  class="com.sosee.myapp.action.AddCompanInfoAction">
+            <result>/web/factory.jsp</result>
+         </action>
+         <!-- 跳转到注册页面 -->
+         <action name="zsosee.myappce"  class="com.sosee.myapp.action.Zsosee.myappceAction">
+            <result>/web/register.jsp</result>
+         </action>
+         
+         <!-- 跳转到产品添加页面 -->
+         <action name="addpro"  class="com.sosee.myapp.action.AddProductAction">
+            <result>/web/product.jsp</result>
+         </action>
+         
+         <!-- 查看产品信息 -->
+        <action name="*Action" method="{1}" class="com.sosee.myapp.action.SearchProductAction">
+            <result name="findSuccess">/web/productInfo.jsp</result>
+            <result name="findbynameSuccess">/web/productInfo.jsp</result>
+         </action>
+         
+         
+         <action name="fenyecomp" method="fenyecomp" class="com.sosee.myapp.action.CompanyInfoAction">
+            <result name="fenyeSuccess">/web/factoryInfo.jsp</result>
+         </action>
+	</package>
+	
+	
+	
+
+</struts>

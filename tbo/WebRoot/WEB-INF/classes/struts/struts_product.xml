@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	
+	
+	<package name="product" extends="default" namespace="/product">
+		<action name="*Action" class="com.sosee.custom.product.action.ProductAction" method="{1}">
+			<result name="list">/WEB-INF/manage/custom/productList.jsp</result>
+			<result name="refresh" type="redirect">/product/transferToProductListAction.do</result>
+		</action>
+	</package>
+</struts>

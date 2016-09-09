@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+             default-autowire="byName">
+	<!--联合会管理  -->
+	<bean id="leagueDao" class="com.sosee.sys.base.dao.LeagueDaoImpl" scope="prototype"/>
+	<bean id="leagueService" class="com.sosee.sys.base.service.LeagueServiceImpl" scope="prototype" />
+	<!--栏目管理  -->
+	<bean id="itemsDao" class="com.sosee.sys.base.dao.ItemsDaoImpl" scope="prototype"/>
+	<bean id="itemsService" class="com.sosee.sys.base.service.ItemServiceImpl" scope="prototype" />
+	
+	<!--行业管理  -->
+	<bean id="tradeDao" class="com.sosee.sys.base.dao.TradeDaoImpl" scope="prototype"/>
+	<bean id="tradeService" class="com.sosee.sys.base.service.TradeServiceImpl" scope="prototype" />
+	
+	<!--新闻和其他新闻  -->
+	<bean id="newsDao" class="com.sosee.sys.news.dao.NewsDaoImpl" scope="prototype" />
+	<bean id="newsService" class="com.sosee.sys.news.service.NewsServiceImpl" scope="prototype" />
+	<bean id="newsTypeDao" class="com.sosee.sys.news.dao.NewsTypeDaoImpl" scope="prototype" />
+	<bean id="newsTypeService" class="com.sosee.sys.news.service.NewsTypeServiceImpl" scope="prototype" />
+	<bean id="newsContentsDao" class="com.sosee.sys.news.dao.NewsContentsDaoImpl" scope="prototype" />
+	<bean id="newsContentsService" class="com.sosee.sys.news.service.NewsContentsServiceImpl" scope="prototype" />
+	
+	<bean id="newsAction" class="com.sosee.sys.news.action.NewsAction" scope="prototype" />
+</beans>

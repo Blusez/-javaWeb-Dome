@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:aop="http://www.springframework.org/schema/aop"
+     xmlns:tx="http://www.springframework.org/schema/tx"
+     xsi:schemaLocation="
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+             default-autowire="byName">
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:/spring/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 配置datasource -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<!--
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName">
+			<value>java:/MSSQLDS</value>
+		</property>
+	</bean> 
+	-->
+	
+	<!-- Using AnnotationSessionFactoryBean -->
+	<!-- class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"> -->
+	<bean id="sessionFactory"
+			class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses"> 
+			<list>
+				<value>com.sosee.sys.base.pojo.BaseDict</value> 
+				<value>com.sosee.sys.base.pojo.BaseCode</value> 
+				<value>com.sosee.sys.base.pojo.Region</value> 
+				<value>com.sosee.sys.base.pojo.CityRegion</value> 
+				<value>com.sosee.sys.base.pojo.League</value> 
+				<value>com.sosee.sys.base.pojo.Items</value> 
+				<value>com.sosee.sys.base.pojo.Trade</value> 
+				
+				<value>com.sosee.sys.news.pojo.NewsType</value> 
+				<value>com.sosee.sys.news.pojo.NewsContents</value> 
+				<value>com.sosee.sys.news.pojo.News</value> 
+
+				<value>com.sosee.sys.user.pojo.Moudle</value>
+				<value>com.sosee.sys.user.pojo.Role</value>
+				<value>com.sosee.sys.user.pojo.RoleMoudle</value>
+				<value>com.sosee.sys.user.pojo.User</value>
+				<value>com.sosee.sys.user.pojo.UserRole</value>
+				<value>com.sosee.sys.user.pojo.LoginLog</value>
+				<value>com.sosee.sys.user.pojo.OperateLog</value>
+				
+				<value>com.sosee.app.pojo.Dict</value>
+				<value>com.sosee.custom.company.pojo.Company</value>
+				<value>com.sosee.custom.product.pojo.Product</value>
+				<value>com.sosee.custom.orders.pojo.Order</value>
+				<value>com.sosee.custom.opdetail.pojo.Opdetail</value>
+				
+			</list>
+		</property> 
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.jdbc.fetch_size">50</prop>
+				<prop key="hibernate.bytecode.use_reflection_optimizer">false</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</prop>
+			 	<prop key="hibernate.hbm2ddl.auto">update</prop>
+			 <!--
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			  -->
+			</props>
+		</property>
+
+	</bean>
+	<!--
+		Using HibernateTemplate, and shared by all DAO object because it is
+		thread-safe
+	-->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="fetchSize" value="20" />
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+		<property name="fetchSize" value="20" />
+	</bean>
+
+	<!-- TransactionManager -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- 声明TxAdvice -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="create*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="save*" propagation="REQUIRED"/>
+			<tx:method name="*" read-only="false" propagation="NOT_SUPPORTED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config>
+		<!-- 使用AspectJ语法定义Pointcut -->
+		<aop:pointcut id="uServiceOperate"
+			expression="execution(* com.sosee*service.*.*(..))" />
+
+		<!-- 织入-->
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="uServiceOperate" />
+
+	</aop:config>
+
+    <!-- 分页 -->
+	<bean id="page" class="com.sosee.base.dao.Page" scope="prototype">
+		<constructor-arg value="0" />
+	</bean>
+
+    <!-- 通用存储过程调用DAO -->
+    <bean id="procInvokeDao" class="com.sosee.base.dao.ProcInvokeDaoImpl" scope="prototype"/> 
+
+    <!-- 通用存储过程调用Service -->
+    <bean id="procInvokeService" class="com.sosee.base.service.ProcInvokeServiceImpl" scope="prototype"/>
+    
+</beans>

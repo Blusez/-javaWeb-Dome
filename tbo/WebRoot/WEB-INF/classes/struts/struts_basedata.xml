@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+
+	<package name="tree" extends="default" namespace="/tree">
+		<action name="*Action" class="com.sosee.sys.base.action.ItemsAction" method="{1}">
+			<result name="success">/WEB-INF/manage/basedata/itemsTree.jsp</result>
+			<result name="switch">/WEB-INF/manage/basedata/itemsListFrame.jsp</result>
+			<result name="list">/WEB-INF/manage/basedata/itemsList.jsp</result>
+			<result name="refresh" type="redirect">/tree/getSubItemsListByPIdAction.do?id=${subItem.parentId.id}&amp;errorMessage=${errorMessage}</result>
+			<result name="delete" type="redirect">/tree/getSubItemsListByPIdAction.do?id=${pid}&amp;errorMessage=${errorMessage}</result>
+		</action>
+	</package>
+	<package name="baseData" extends="default" namespace="/baseData">
+		<action name="*Action" class="com.sosee.sys.base.action.BaseCodeAction" method="{1}">
+		    <result name="success">/WEB-INF/manage/basedata/baseDictTree.jsp</result>
+		    <result name="switch">/WEB-INF/manage/basedata/baseCodeListFrame.jsp</result>
+		    <result name="list">/WEB-INF/manage/basedata/baseCodeList.jsp</result>		  
+		</action>
+	</package>
+	<package name="region" extends="default" namespace="/region">
+		<action name="*Action" class="com.sosee.sys.base.action.CityRegionAction" method="{1}">
+		    <result name="success">/WEB-INF/manage/basedata/regionTree.jsp</result>
+		    <result name="switch">/WEB-INF/manage/basedata/regionListFrame.jsp</result>
+		    <result name="list">/WEB-INF/manage/basedata/regionList.jsp</result>
+		    <result name="false">/WEB-INF/manage/basedata/regionList.jsp</result>	
+		    <result name="refresh" type="redirect">/region/getSubRegionListByPIdAction.do?id=${subCityRegion.parentId.id}&amp;errorMessage=${errorMessage}</result>
+			<result name="delete" type="redirect">/region/getRegionListAction.do</result>	
+		</action>
+	</package>
+	<package name="trade" extends="default" namespace="/trade">
+		<action name="*Action" class="com.sosee.sys.base.action.TradeAction" method="{1}">
+			<result name="list">/WEB-INF/manage/basedata/tradeList.jsp</result>
+			<result name="refresh" type="redirect">/trade/transferToListAction.do</result>
+		</action>
+	</package>
+	<package name="league" extends="default" namespace="/league">
+		<action name="*Action" class="com.sosee.sys.base.action.LeagueAction" method="{1}">
+			<result name="list">/WEB-INF/manage/basedata/leagueList.jsp</result>
+			<result name="refresh" type="redirect">/league/transferToLeagueListAction.do</result>
+		</action>
+	</package>
+</struts>
